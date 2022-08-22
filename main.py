@@ -1,5 +1,6 @@
 from functools import wraps
-from flask import Flask, render_template, redirect, url_for, flash, abort
+import smtplib, ssl
+from flask import Flask, render_template, redirect, url_for, flash, abort, request
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
 from datetime import date
@@ -45,6 +46,11 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(user_id)
 
+##SMTP INFO
+my_email = os.environ.get("my_email")
+password = os.environ.get("password")
+receiving_mail = os.environ.get("receiving_mail")
+context = ssl.create_default_context()
 
 ##CONFIGURE TABLES
 
@@ -192,9 +198,26 @@ def about():
     return render_template("about.html")
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["POST", "GET"])
 def contact():
-    return render_template("contact.html")
+    # if request.method == "POST":
+    #     name = request.form['username']
+    #     email = request.form['email']
+    #     phone_number = request.form['phone_number']
+    #     message = request.form['message']
+    #     msg_body = f"Subject: Message from {name}\n\nName: {name} \nEmail: {email} \nPhone Number: {phone_number} \nMessage: {message}"
+
+    #     with smtplib.SMTP("smtp.gmail.com", 465, context) as connection:
+    #         connection.ehlo()
+    #         connection.login(user=my_email, password=password)
+    #         connection.sendmail(
+    #             from_addr=my_email,
+    #             to_addrs=receiving_mail,
+    #             msg=msg_body
+    #         )
+    #     return render_template("contact.html", method="POST")
+
+    return render_template("contact.html", method="GET")
 
 
 @app.route("/new-post", methods=["POST", "GET"])
