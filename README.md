@@ -22,8 +22,9 @@ cd My-Blog
 ```
 
 ### Create a virtual eenvironment in the Project level folder
-Run this command while in the My-Blog directory to create a virtualenvironment called venv
-```virtualenv venv
+Run this command while in the My-Blog directory to create a virtualenvironment called `venv`
+```
+virtualenv venv
 ```
 
 ### Activate the Environement
@@ -46,6 +47,6 @@ On line 18 in the main.py file, there is
 ### Run the Program
 Depending on your IDE, go to the main.py file and run the main.py file
 
-
+### To Contribute
 Note: I removed the contact me page because I couldn't get it to work at this time. I tried to send the message via smtplib but I wasn't getting it. Any help is appreciated.
 The code can be found in [main.py](https://github.com/DanAdewole/My-Blog/blob/main/main.py), at the `contact` function.
